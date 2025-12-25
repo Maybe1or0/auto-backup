@@ -6,6 +6,31 @@ ROOT_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
 CONFIG_FILE="$ROOT_DIR/config/config.env"
 LOG_FILE="$ROOT_DIR/logs/backup.log"
 
+print_banner() {
+  cat <<'BANNER'
+   ___         __              ____             __             
+  /   | __  __/ /_____        / __ )____ ______/ /____  ______ 
+ / /| |/ / / / __/ __ \______/ __  / __ `/ ___/ //_/ / / / __ \
+/ ___ / /_/ / /_/ /_/ /_____/ /_/ / /_/ / /__/ ,< / /_/ / /_/ /
+/_/  |_\__,_/\__/\____/     /_____/\__,_/\___/_/|_|\__,_/ .___/ 
+                                                      /_/      
+BANNER
+}
+
+LOG_TO_FILE=0
+if [ "${1:-}" = "--log" ]; then
+  LOG_TO_FILE=1
+  shift
+elif [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  printf '%s\n' "Usage: $0 [--log]"
+  printf '%s\n' "  --log   Write output to logs/backup.log instead of stdout"
+  exit 0
+elif [ "$#" -gt 0 ]; then
+  printf '%s\n' "Unknown option: $1" >&2
+  printf '%s\n' "Usage: $0 [--log]" >&2
+  exit 1
+fi
+
 if [ ! -f "$CONFIG_FILE" ]; then
   printf '%s\n' "Missing config file: $CONFIG_FILE" >&2
   exit 1
@@ -18,10 +43,13 @@ fi
 . "$CONFIG_FILE"
 
 mkdir -p "$ROOT_DIR/logs"
-touch "$LOG_FILE"
+if [ "$LOG_TO_FILE" -eq 1 ]; then
+  touch "$LOG_FILE"
+  # Send all output to the log file.
+  exec >>"$LOG_FILE" 2>&1
+fi
 
-# Send all output to the log file.
-exec >>"$LOG_FILE" 2>&1
+print_banner
 
 log "Starting GitHub AutoBackup"
 check_requirements
