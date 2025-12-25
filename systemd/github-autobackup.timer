@@ -1,0 +1,10 @@
+[Unit]
+Description=Run GitHub AutoBackup daily
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+Unit=github-autobackup.service
+
+[Install]
+WantedBy=timers.target

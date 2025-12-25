@@ -1,0 +1,9 @@
+\section{Implementation}
+Le script \texttt{backup.sh} charge la configuration, puis appelle les modules
+fonctionnels. La liste des depots est obtenue via la commande \texttt{gh repo list}
+filtree pour ne conserver que les noms. Pour chaque depot, l'outil decide entre un
+clonage initial ou une mise a jour.
+
+Deux modes de clonage sont disponibles : \texttt{normal} pour un clone standard et
+\texttt{mirror} pour un depot miroir. Les operations Git sont encapsulees dans
+\texttt{git\_ops.sh}, afin de centraliser les commandes et simplifier les tests.

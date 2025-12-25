@@ -1,0 +1,8 @@
+\section{Securite}
+L'acces a GitHub est realise via SSH, ce qui permet d'utiliser des cles ed25519 ou
+rsa et d'eviter l'exposition de mots de passe. L'authentification GitHub CLI est
+verifiee avant l'installation afin de detecter les configurations non valides.
+
+Les donnees de configuration sont limitees aux variables necessaires et doivent
+etre stockees localement. Les journaux sont conserves dans \texttt{logs/} afin de
+faciliter l'audit sans exposer d'information sensible.

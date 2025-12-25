@@ -1,0 +1,13 @@
+[Unit]
+Description=GitHub AutoBackup
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=__BACKUP_USER__
+WorkingDirectory=__PROJECT_ROOT__
+ExecStart=/usr/bin/env bash __PROJECT_ROOT__/src/backup.sh
+
+[Install]
+WantedBy=multi-user.target

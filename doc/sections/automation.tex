@@ -1,0 +1,8 @@
+\section{Automatisation}
+L'automatisation s'appuie sur systemd avec un service de type \texttt{oneshot} et un
+timer quotidien. Le service declare une dependance a \texttt{network-online.target}
+pour garantir la disponibilite reseau avant l'execution.
+
+Le script \texttt{install.sh} installe les unites systemd, active le timer et
+verifie l'authentification GitHub CLI. L'approche privilegie les mecanismes natifs
+Debian et reste compatible avec Raspberry Pi OS.

@@ -1,0 +1,9 @@
+\section{Introduction}
+Le projet GitHub AutoBackup automatise la sauvegarde des depots GitHub d'un
+utilisateur. Il cible un environnement Raspberry Pi sous Debian et s'execute sans
+interface graphique. L'objectif principal est de conserver une copie locale a jour
+des depots afin de limiter les risques lies a une perte de donnees distante.
+
+La solution repose exclusivement sur des scripts Bash et sur des outils standards
+(Git, GitHub CLI et SSH). L'execution est planifiee via systemd afin d'assurer une
+sauvegarde quotidienne sans intervention humaine.
