@@ -52,7 +52,7 @@ chmod +x "$STUB_DIR/ssh"
 
 export PATH="$STUB_DIR:$PATH"
 
-"$ROOT_DIR/src/backup.sh"
+"$ROOT_DIR/src/backup.sh" --log
 
 if [ ! -f "$ROOT_DIR/logs/backup.log" ]; then
   printf '%s\n' "Expected log file not found" >&2
