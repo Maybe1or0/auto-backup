@@ -48,6 +48,8 @@ if [ -z "$repos" ]; then
   exit 0
 fi
 
+log "Repositories found: $repos"
+
 for repo in $repos; do
   if [ "$CLONE_MODE" = "mirror" ]; then
     repo_dir="$BACKUP_DIR/$repo.git"
@@ -56,10 +58,10 @@ for repo in $repos; do
   fi
 
   if [ -d "$repo_dir" ]; then
-    log "Updating $repo"
+    log "Updating $repo (existing clone)"
     update_repo "$repo"
   else
-    log "Cloning $repo"
+    log "Cloning $repo (not found locally)"
     clone_repo "$repo"
   fi
 done
