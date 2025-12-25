@@ -34,7 +34,7 @@ update_repo() {
 
   case "$CLONE_MODE" in
     normal)
-      git -C "$BACKUP_DIR/$repo" fetch --all
+      git -C "$BACKUP_DIR/$repo" pull --ff-only
       ;;
     mirror)
       git -C "$BACKUP_DIR/$repo.git" remote update
