@@ -1,49 +1,45 @@
+![Platform](https://img.shields.io/badge/platform-Linux%20(Debian)-blue)
+![Device](https://img.shields.io/badge/device-Raspberry%20Pi-red)
+![Language](https://img.shields.io/badge/language-Bash-green)
+![Automation](https://img.shields.io/badge/automation-systemd-orange)
+![GitHub API](https://img.shields.io/badge/API-GitHub-black)
+![Status](https://img.shields.io/badge/status-stable-brightgreen)
+
 # GitHub AutoBackup
 
-Systeme de sauvegarde automatique des depots GitHub d'un utilisateur, concu pour
-fonctionner sur un Raspberry Pi (Linux Debian) sans interface graphique.
+Automatic backup system for a user's GitHub repositories, designed to run on a Raspberry Pi (Debian Linux) without a graphical interface.
 
-## Objectif
-- Detecter les nouveaux depots GitHub
-- Mettre a jour les depots existants
-- Conserver une copie locale (clone normal ou miroir)
-- Planifier l'execution via systemd
-- Fournir une documentation technique LaTeX
+## Objective
+- Detect new GitHub repositories
+- Update existing repositories
+- Maintain a local copy (standard clone or mirror)
+- Schedule execution via systemd
+- Provide LaTeX technical documentation
 
 ## Architecture
-- `config/` : configuration utilisateur (config.env)
-- `src/` : modules Bash (API GitHub, operations Git, logs, prerequis)
-- `systemd/` : service et timer systemd
-- `scripts/` : installation et activation
-- `logs/` : journalisation (backup.log)
-- `doc/` : documentation LaTeX
-- `tests/` : tests simples
+- `config/`: user configuration (config.env)
+- `src/`: Bash modules (GitHub API, Git operations, logging, prerequisites)
+- `systemd/`: systemd service and timer
+- `scripts/`: installation and activation
+- `doc/`: documentation
+- `tests/`: basic tests
 
 ## Installation
-1. Installer les dependances et activer le timer :
+1. Install dependencies and enable the timer:
    `./scripts/install.sh`
-2. Modifier la configuration :
+2. Edit the configuration:
    `config/config.env`
-3. Verifier l'authentification GitHub CLI :
+3. Verify GitHub CLI authentication:
    `gh auth status`
 
-L'installation utilise les fichiers systemd du dossier `systemd/` et active un
-timer quotidien.
+The installation uses the systemd files located in the `systemd/` directory and enables a daily timer.
 
-## Execution manuelle
-```
+## Manual Execution
+```sh
 ./src/backup.sh
 ```
 
-Les logs sont ecrits dans `logs/backup.log`.
+Logs are written to `logs/backup.log`.
 
-## Documentation LaTeX
-La documentation est dans `doc/`. Pour compiler :
-
-```
-cd doc
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
-```
+## Documentation
+The documentation is located in `doc/`.
